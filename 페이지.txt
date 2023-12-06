@@ -1,0 +1,44 @@
+
+--page 3
+SELECT supplystore.address
+FROM supplystore
+where UPPER(supplystore.address) LIKE '%B%'-- B 는 jdbc변수로 받기
+;
+
+--page 4 (이거 어차피 전부다 고유값인데 데이터가 검색되기 굉장히 힘들것 같음)
+SELECT P.breed, P.age, d.address 
+FROM distributioncenter D, pet P
+where p.ssn = d.cname
+and UPPER(d.address) LIKE '%A%' -- 이것도 변수받기 
+and UPPER(P.breed) LIKE '%A%' --A대신 변수 받기
+and p.age < 2-- 숫자 jdbc 변수이름으로 변경
+;
+
+--page 5
+SELECT TraingFacility.address
+FROM TraingFacility
+where UPPER(TraingFacility.address) LIKE '%B%'-- B 는 jdbc변수로 받기
+;
+
+--page 6
+SELECT BeautyShop.address
+FROM BeautyShop
+where UPPER(BeautyShop.address) LIKE '%B%'-- B 는 jdbc변수로 받기
+;
+
+--page 7
+SELECT Hospital.address
+FROM Hospital
+where UPPER(Hospital.address) LIKE '%B%'-- B 는 jdbc변수로 받기
+;
+
+--page 8
+SELECT PlayZone.address
+FROM PlayZone
+where UPPER(PlayZone.address) LIKE '%B%'-- B 는 jdbc변수로 받기
+;
+
+--page 9
+SELECT *
+FROM distributioncenter
+INNER JOIN pet ON distributioncenter.cname = pet.ssn;
