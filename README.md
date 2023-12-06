@@ -23,3 +23,4 @@ Describe in your README how to execute your code, what environments to be config
    - It's uploaded Youtube Video
    - If you want see the demo, then you followed below URL
    - https://www.youtube.com/watch?v=s6arkd99x4U
+   - <I recommended "Open the new tap", because When you see the video then click the previous page, It takes a few time>
