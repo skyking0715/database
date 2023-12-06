@@ -10,7 +10,7 @@ Describe in your README how to execute your code, what environments to be config
    - So, you can sees the Address of you seleceted option
    - If you want to see the options table, then redirected the showResult page
   
-   - Loging sucessed is exists the two cases
+   - If login is successful, there are two cases:
    - One is Administrate, and the other is Not administrate
    - If you login to administrate account, you can use the "CRUD" function
   
