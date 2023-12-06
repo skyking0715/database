@@ -1,0 +1,159 @@
+--q1-1)
+SELECT Cname, pnumber
+FROM beautyshop
+WHERE price >= 30
+
+--q1-2)
+SELECT SSN, BREEd
+FROM pet
+WHERE age >= 12
+
+--q2-1)
+SELECT D.pnumber, P.PRICE
+FROM distributioncenter D, pet P
+WHERE p.ssn = d.cname
+and P.age >= 14
+
+--q2-2)
+SELECT D.goods, P.BREED
+FROM distributioncenter D, pet P
+WHERE p.ssn = d.cname
+and P.price >= 5000
+
+--q3-1)
+SELECT D.goods, COUNT(*) over
+FROM distributioncenter D, pet P
+WHERE p.ssn = d.cname
+and P.price >= 5000
+group by D.goods
+
+--q3-2)
+SELECT d.address, COUNT(*) over
+FROM distributioncenter D, pet P
+WHERE p.ssn = d.cname
+and P.price < 3000
+group by d.address
+
+--q4-1)
+SELECT d.address, d.goods
+FROM distributioncenter D
+WHERE d.cname IN(select d.cname
+                from distributioncenter D, pet P
+                WHERE p.ssn = d.cname   
+                and p.age <=5);
+--q4-2)
+SELECT d.cname, d.employee
+FROM distributioncenter D
+WHERE d.cname IN(select d.cname
+                from distributioncenter D, pet P
+                WHERE p.ssn = d.cname   
+                and p.price >= 8000);
+
+--q5-1)
+SELECT d.cname, d.employee
+FROM distributioncenter D
+WHERE EXISTS(select *
+                from distributioncenter D, pet P
+                WHERE p.ssn = d.cname);
+
+--q5-2)
+SELECT d.cname, p.price
+FROM distributioncenter D, pet P
+WHERE EXISTS(select *
+                from distributioncenter D, pet P
+                WHERE p.ssn = d.cname);
+
+--q6-1)
+SELECT d.address, d.pnumber
+FROM distributioncenter D
+WHERE d.cname IN(select d.cname
+                from distributioncenter D, pet P
+                WHERE p.ssn = d.cname   
+                and p.age <=4);
+--q6-2)
+SELECT d.cname, d.goods
+FROM distributioncenter D
+WHERE d.cname IN(select d.cname
+                from distributioncenter D, pet P
+                WHERE p.ssn = d.cname   
+                and p.price >= 8500);
+--q7-1)
+SELECT ssn
+FROM (SELECT * FROM pet) petview
+WHERE price > 9000;
+
+--q7-2)
+SELECT breed
+FROM (SELECT * FROM pet) petview
+WHERE age = 1;
+
+--q8-1)
+SELECT
+    D.Cname AS DistributionCenterName,
+    D.Goods AS DistributionCenterGoods,
+    P.Ssn AS PetSsn
+FROM DistributionCenter D
+JOIN PET P ON D.Cname = P.Ssn
+WHERE P.Age >= 10
+ORDER BY P.Age;
+
+--q8-2)
+SELECT
+    D.Cname AS DistributionCenterName,
+    P.Ssn AS PetSsn
+FROM DistributionCenter D
+JOIN PET P ON D.Cname = P.Ssn
+WHERE P.price >= 10
+ORDER BY P.price;
+
+--q9-1)
+WITH AvgPetPrice AS (
+    SELECT
+        D.Cname AS DistributionCenterName,
+        AVG(P.Price) AS AvgPrice
+    FROM DistributionCenter D
+    JOIN PET P ON D.Cname = P.Ssn
+    GROUP BY D.Cname
+)
+SELECT DistributionCenterName, AvgPrice
+FROM AvgPetPrice
+ORDER BY AvgPrice DESC;
+
+
+--q9-2)
+WITH sumage AS (
+    SELECT
+        D.Cname AS DistributionCenterName,
+        SUM(P.age) AS sumage
+    FROM DistributionCenter D
+    JOIN PET P ON D.Cname = P.Ssn
+    GROUP BY D.Cname
+)
+SELECT DistributionCenterName, sumage
+FROM sumage
+ORDER BY sumage ASC;
+
+--q10-1)
+SELECT Cname, Pnumber, NULL AS Price, NULL AS Age
+FROM DistributionCenter
+UNION ALL
+SELECT NULL AS Cname,NULL AS Pnumber, Price, Age
+FROM PET
+ORDER BY Cname;
+
+--q10-2)
+SELECT Cname, Pnumber, NULL AS Price, NULL AS Age
+FROM DistributionCenter
+MINUS
+SELECT NULL AS Cname,NULL AS Pnumber, Price, Age
+FROM PET
+ORDER BY Cname;
+
+--q10-3)
+SELECT Cname, Pnumber, NULL AS Price, NULL AS Age
+FROM DistributionCenter
+INTERSECT
+SELECT NULL AS Cname,NULL AS Pnumber, Price, Age
+FROM PET
+ORDER BY Cname;
+

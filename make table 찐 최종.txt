@@ -1,0 +1,73 @@
+CREATE TABLE SupplyStore (
+    Cname VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Employee  VARCHAR(30),
+    Goods VARCHAR(30) NOT NULL,
+    PRIMARY KEY (Cname)
+    );
+
+CREATE TABLE DistributionCenter (
+    Cname VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Employee  VARCHAR(30),
+    Goods VARCHAR(30) NOT NULL,
+    PRIMARY KEY (Cname)
+    );
+
+CREATE TABLE PET (
+    Ssn VARCHAR(30) NOT NULL,
+    Breed VARCHAR(30) NOT NULL,
+    Price INT NOT NULL,
+    Age INT NOT NULL,
+    PRIMARY KEY (Ssn),
+    FOREIGN KEY (Ssn) REFERENCES DistributionCenter (Cname)
+    );
+
+
+CREATE TABLE TRAINGFACILITY (
+    Cname VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Trainer VARCHAR(30) NOT NULL,
+    Program VARCHAR(30) NOT NULL,
+    Price INT NOT NULL,
+    PRIMARY KEY (Cname)
+);
+
+CREATE TABLE BEAUTYSHOP (
+    Cname VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Hairdresser VARCHAR(30) NOT NULL,
+    Price INT NOT NULL,
+    PRIMARY KEY (Cname)
+);
+
+CREATE TABLE Hospital (
+    Cname VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Employee VARCHAR(30) NOT NULL,
+    TreatmentDepartment VARCHAR(30) NOT NULL,
+    ReservationTime DATE NOT NULL,
+    PRIMARY KEY (Cname)
+);
+
+CREATE TABLE PlayZone (
+    Cname VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Employee VARCHAR(30) NOT NULL,
+    Goods VARCHAR(30) NOT NULL,
+    PRIMARY Key (Cname)
+);
+
+CREATE TABLE Customer (
+    Name VARCHAR(30) NOT NULL,
+    Address VARCHAR(30) NOT NULL,
+    Pnumber VARCHAR(15) NOT NULL,
+    Sex VARCHAR(6) NOT NULL,
+    PRIMARY KEY (NAME)
+);
